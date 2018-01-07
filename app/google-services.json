@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "715351851766",
+    "firebase_url": "https://topaga-emplumada.firebaseio.com",
+    "project_id": "topaga-emplumada",
+    "storage_bucket": "topaga-emplumada.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715351851766:android:be4626d457730575",
+        "android_client_info": {
+          "package_name": "com.topagaemplumada.jufarangoma.tpagaemplumada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715351851766-1q2l3bdk4i0e3r1037e3ih9uju6of1ub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.topagaemplumada.jufarangoma.tpagaemplumada",
+            "certificate_hash": "1ec191447f0626176b29102bed9847bc03c7b555"
+          }
+        },
+        {
+          "client_id": "715351851766-tvdbcce0k71gvsa0hhsim3hn1h5fntdc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVoG5xgZb0GqBhqd_9G-7T6hYKUzwySsY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715351851766-tvdbcce0k71gvsa0hhsim3hn1h5fntdc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
