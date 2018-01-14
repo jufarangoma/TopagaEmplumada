@@ -1,7 +1,8 @@
-package com.topagaemplumada.jufarangoma.tpagaemplumada
+package com.topagaemplumada.jufarangoma.tpagaemplumada.Views
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.topagaemplumada.jufarangoma.tpagaemplumada.R
 
 class MainActivity : AppCompatActivity() {
 

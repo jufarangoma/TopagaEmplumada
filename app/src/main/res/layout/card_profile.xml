@@ -13,9 +13,10 @@
             >
 
             <ImageView
-                android:id="@+id/iv_bird_card"
+                android:id="@+id/iv_bird_image"
                 android:layout_width="100dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/tv_bird_name"
                 android:layout_marginLeft="110dp"
@@ -24,6 +25,7 @@
                 android:layout_marginTop="10dp"
                 />
             <TextView
+                android:id="@+id/tv_scientific_name"
                 android:layout_marginLeft="110dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
