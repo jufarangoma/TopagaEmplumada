@@ -90,6 +90,9 @@ class UploadBird:AppCompatActivity(){
                     Toast.makeText(this,"Audio upload Succesfully",Toast.LENGTH_SHORT).show()
                 }
             }
+            else ->{
+
+            }
         }
 
     }

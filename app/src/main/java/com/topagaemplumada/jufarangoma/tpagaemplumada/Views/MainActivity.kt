@@ -1,5 +1,6 @@
 package com.topagaemplumada.jufarangoma.tpagaemplumada.Views
 
+import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     var firebaseDatabase: FirebaseDatabase?=null
     var databaseReference: DatabaseReference?=null
     var birds = ArrayList<Bird>()
+    private var progressDialog: ProgressDialog? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation= LinearLayoutManager.VERTICAL
         rv_birds.layoutManager= layoutManager
-
+        showProgress("Cargando")
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase!!.getReference().child("birds")
         databaseReference!!.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -60,11 +62,28 @@ class MainActivity : AppCompatActivity() {
         startActivity<UploadBird>()
     }
     fun firebaseListener(birds: ArrayList<Bird>){
+        closeProgress()
         if(birds.isNotEmpty()){
             val adapter = BirdAdapter(birds,R.layout.card_profile,this)
 
             rv_birds.adapter = adapter
         }
 
+    }
+    fun showProgress(titleDialog :String?){
+        if(progressDialog!=null){
+            closeProgress()
+        }
+        progressDialog= ProgressDialog(this,R.style.AppCompatAlertDialogStyle)
+        progressDialog!!.setMessage(titleDialog)
+        progressDialog!!.setCancelable(true)
+        progressDialog!!.show()
+    }
+
+    fun closeProgress(){
+        if (progressDialog != null && progressDialog!!.isShowing()) {
+            progressDialog!!.dismiss()
+            progressDialog=null
+        }
     }
 }

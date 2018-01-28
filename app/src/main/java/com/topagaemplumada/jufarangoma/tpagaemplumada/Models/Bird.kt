@@ -1,9 +1,11 @@
 package com.topagaemplumada.jufarangoma.tpagaemplumada.Models
 
+import java.io.Serializable
+
 /**
  * Created by Juan Felipe Arango on 1/6/18.
  */
-class Bird{
+class Bird: Serializable{
     var name: String?=null
     var scientificName:String?=null
     var photo: String?=null
