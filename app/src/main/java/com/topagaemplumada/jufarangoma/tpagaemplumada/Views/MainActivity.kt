@@ -26,9 +26,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var layoutManager = LinearLayoutManager(this)
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL)
-        rv_birds.setLayoutManager(layoutManager)
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation= LinearLayoutManager.VERTICAL
+        rv_birds.layoutManager= layoutManager
+
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase!!.getReference().child("birds")
         databaseReference!!.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -36,32 +37,34 @@ class MainActivity : AppCompatActivity() {
                 for (child in snapshot.children) {
                     val birdHash = (child.value as HashMap<*,String>)
                     val bird = Bird(birdHash["name"].toString(),
-                                    birdHash["scientificName"].toString(),
-                                    birdHash["photo"].toString(),
-                                    birdHash["audio"].toString(),
-                                    birdHash["description"].toString())
+                            birdHash["scientificName"].toString(),
+                            birdHash["photo"].toString(),
+                            birdHash["audio"].toString(),
+                            birdHash["description"].toString())
                     print(bird)
                     birds.add(bird)
                 }
+                firebaseListener(birds)
             }
             override fun onCancelled(databaseError: DatabaseError) {
             }
-        })
 
+        })
     }
 
     override fun onResume() {
         super.onResume()
-        if(birds.isNotEmpty()){
-            var layoutManager = LinearLayoutManager(this)
-            layoutManager.setOrientation(LinearLayoutManager.VERTICAL)
-            rv_birds.setLayoutManager(layoutManager)
-            val adapter = BirdAdapter(birds,R.layout.card_profile,this)
-            rv_birds.adapter = adapter
-        }
 
     }
     fun uploadBird(view: View){
         startActivity<UploadBird>()
+    }
+    fun firebaseListener(birds: ArrayList<Bird>){
+        if(birds.isNotEmpty()){
+            val adapter = BirdAdapter(birds,R.layout.card_profile,this)
+
+            rv_birds.adapter = adapter
+        }
+
     }
 }
