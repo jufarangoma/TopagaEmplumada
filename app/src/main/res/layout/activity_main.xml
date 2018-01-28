@@ -3,12 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.topagaemplumada.jufarangoma.tpagaemplumada.Views.MainActivity">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_birds"
+        android:layout_width="wrap_content"
+        android:layout_height="439dp"
+        android:padding="15dp" />
+
+    <Button
+        android:id="@+id/btn_upload_bird"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp"/>
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:onClick="uploadBird"
+        android:text="Subir ave"
+        app:layout_constraintTop_toBottomOf="@id/rv_birds"
+        tools:layout_editor_absoluteX="146dp"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
