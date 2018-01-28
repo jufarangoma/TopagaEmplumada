@@ -56,7 +56,7 @@ class UploadBird:AppCompatActivity(){
 
     fun uploadImage(view:View){
         val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/jpeg"
+        intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
         startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER)
     }

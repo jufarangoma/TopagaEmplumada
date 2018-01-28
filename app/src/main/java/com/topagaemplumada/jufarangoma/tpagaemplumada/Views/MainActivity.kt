@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.internal.FirebaseAppHelper.getUid
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
+import com.topagaemplumada.jufarangoma.tpagaemplumada.Adapter.BirdAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
@@ -40,12 +41,24 @@ class MainActivity : AppCompatActivity() {
                                     birdHash["audio"].toString(),
                                     birdHash["description"].toString())
                     print(bird)
-                    birds.add(bird!!)
+                    birds.add(bird)
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
             }
         })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(birds.isNotEmpty()){
+            var layoutManager = LinearLayoutManager(this)
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL)
+            rv_birds.setLayoutManager(layoutManager)
+            val adapter = BirdAdapter(birds,R.layout.card_profile,this)
+            rv_birds.adapter = adapter
+        }
 
     }
     fun uploadBird(view: View){
