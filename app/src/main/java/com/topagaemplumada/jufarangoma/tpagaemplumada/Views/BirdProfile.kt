@@ -29,17 +29,31 @@ class BirdProfile:AppCompatActivity(){
         tv_scientific_name_profile.text = bird!!.scientificName
         description_profile.text = bird!!.description
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        mediaPlayer.setDataSource(bird!!.audio)
     }
 
     override fun onResume() {
         super.onResume()
+        var isPlaying = false
         iv_bird_profile.setOnClickListener{
-            try {
-                mediaPlayer.setDataSource(bird!!.audio)
-                mediaPlayer.start()
-            }catch(e:IllegalArgumentException){
+            if (!isPlaying) {
+                isPlaying = true
+                try {
+                    mediaPlayer.prepare()
+                    mediaPlayer.start()
 
+                } catch (e: IllegalArgumentException) {
+
+                }
+            }else{
+                mediaPlayer.stop()
+                isPlaying = false
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer.stop()
     }
 }

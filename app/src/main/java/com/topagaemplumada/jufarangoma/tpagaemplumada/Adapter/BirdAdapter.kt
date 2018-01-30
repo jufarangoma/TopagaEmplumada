@@ -46,6 +46,7 @@ class BirdAdapter(val birds: ArrayList<Bird>,val resource: Int, val activity: Ma
             view.setOnClickListener {
                 activity.startActivity<BirdProfile>("Bird" to bird)
             }
+
         }
 
     }

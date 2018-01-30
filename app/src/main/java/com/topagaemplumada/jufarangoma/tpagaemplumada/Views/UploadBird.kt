@@ -21,6 +21,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageMetadata
 import com.topagaemplumada.jufarangoma.tpagaemplumada.Models.Bird
 import kotlinx.android.synthetic.main.activity_upload_bird.*
+import org.jetbrains.anko.startActivity
 
 
 /**
@@ -31,9 +32,6 @@ class UploadBird:AppCompatActivity(){
     val RC_PHOTO_PICKER = 2
     val RC_AUDIO_PICKER = 27
 
-    var commonName: String?=null
-    var scientificName: String?=null
-    var description: String?=null
     var audio: String?=null
     var image: String?=null
 
@@ -100,6 +98,8 @@ class UploadBird:AppCompatActivity(){
     fun uploadBird(view: View){
         val bird = Bird(et_common_name.text.toString(),et_scientific_name.text.toString(),image,audio,et_description.text.toString())
         databaseReference!!.push().setValue(bird)
+        this.finish()
+        startActivity<UploadBird>()
     }
 }
 

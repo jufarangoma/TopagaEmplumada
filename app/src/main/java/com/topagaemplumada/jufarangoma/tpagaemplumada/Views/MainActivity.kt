@@ -86,4 +86,9 @@ class MainActivity : AppCompatActivity() {
             progressDialog=null
         }
     }
+
+    fun reload(view:View){
+        this.finish()
+        startActivity<MainActivity>()
+    }
 }
