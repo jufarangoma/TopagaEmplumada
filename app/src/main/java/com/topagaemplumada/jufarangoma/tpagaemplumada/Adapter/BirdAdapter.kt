@@ -37,14 +37,17 @@ class BirdAdapter(val birds: ArrayList<Bird>,val resource: Int, val activity: Ma
         var name = view.findViewById<TextView>(R.id.tv_bird_name)
         var scientificName = view.findViewById<TextView>(R.id.tv_scientific_name)
         var birdImage = view.findViewById<ImageView>(R.id.iv_bird_image)
-        var card = view.findViewById<CardView>(resource)
 
         fun setBird(bird:Bird){
             name.text = bird.name
             scientificName.text = bird.scientificName
             Glide.with(activity).load(bird.photo).into(birdImage)
             view.setOnClickListener {
-                activity.startActivity<BirdProfile>("Bird" to bird)
+                //activity.startActivity<BirdProfile>("Bird" to bird)
+                val currenDialog = BirdProfile.newInstance(bird)
+                val ft = activity.fragmentManager.beginTransaction()
+                ft.addToBackStack(null)
+                currenDialog.show(ft, "bird")
             }
 
         }
