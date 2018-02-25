@@ -19,19 +19,16 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 /**
  * Created by root on 1/14/18.
  */
-class BirdProfile:DialogFragment(){
+class BirdProfile: AppCompatActivity(){
 
     var bird: Bird?=null
     var mediaPlayer = MediaPlayer()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view: View =inflater!!.inflate(R.layout.activity_bird_profile,container,false)
-        return view
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(arguments!=null) bird = arguments.getSerializable("bird") as Bird
-        //bird = intent.getSerializableExtra("Bird") as Bird
+        setContentView(R.layout.activity_bird_profile)
+        //setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog)
+        bird = intent.getSerializableExtra("Bird") as Bird
 
     }
 
@@ -44,34 +41,24 @@ class BirdProfile:DialogFragment(){
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
         mediaPlayer.setDataSource(bird!!.audio)
         var isPlaying = false
-        if (!isPlaying) {
-            isPlaying = true
-            try {
-                mediaPlayer.prepare()
-                mediaPlayer.start()
+        iv_bird_profile.setOnClickListener {
+            if (!isPlaying) {
+                isPlaying = true
+                try {
+                    mediaPlayer.prepare()
+                    mediaPlayer.start()
+                } catch (e: IllegalArgumentException) {
+                }
 
-            } catch (e: IllegalArgumentException) {
-
+            } else {
+                mediaPlayer.stop()
+                isPlaying = false
             }
-        }else{
-            mediaPlayer.stop()
-            isPlaying = false
         }
-
     }
 
     override fun onPause() {
         super.onPause()
         mediaPlayer.stop()
-    }
-
-    companion object {
-        fun newInstance(bird: Bird): BirdProfile {
-            val fragment= BirdProfile()
-            val args = Bundle()
-            args.putSerializable("bird", bird)
-            fragment.arguments = args
-            return fragment
-        }
     }
 }

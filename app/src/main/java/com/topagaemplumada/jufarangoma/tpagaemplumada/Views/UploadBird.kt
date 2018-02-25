@@ -68,31 +68,29 @@ class UploadBird:AppCompatActivity(){
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
-            RC_PHOTO_PICKER->{
-                val selectedImage = data!!.getData()
-                val photoRef = storageReference!!.child(selectedImage.lastPathSegment)
-                photoRef.putFile(selectedImage).addOnSuccessListener{ taskSnapshot ->
-                    val download = taskSnapshot.downloadUrl
-                    image = download!!.toString()
-                    Toast.makeText(this,"Image upload Succesfully",Toast.LENGTH_SHORT).show()
-                }
+        if(data!=null){
+            when(requestCode){
+                RC_PHOTO_PICKER->{
+                    val selectedImage = data!!.getData()
+                    val photoRef = storageReference!!.child(selectedImage.lastPathSegment)
+                    photoRef.putFile(selectedImage).addOnSuccessListener{ taskSnapshot ->
+                        val download = taskSnapshot.downloadUrl
+                        image = download!!.toString()
+                        Toast.makeText(this,"Image upload Succesfully",Toast.LENGTH_SHORT).show()
+                    }
 
-            }
-            RC_AUDIO_PICKER->{
-                val selectedAudio = data!!.getData()
-                val audioRef = storageReference!!.child(selectedAudio.lastPathSegment)
-                audioRef.putFile(selectedAudio,storageMetadata!!).addOnSuccessListener{ taskSnapshot ->
-                    val download = taskSnapshot.downloadUrl
-                    audio = download!!.toString()
-                    Toast.makeText(this,"Audio upload Succesfully",Toast.LENGTH_SHORT).show()
                 }
-            }
-            else ->{
-
+                RC_AUDIO_PICKER->{
+                    val selectedAudio = data!!.getData()
+                    val audioRef = storageReference!!.child(selectedAudio.lastPathSegment)
+                    audioRef.putFile(selectedAudio,storageMetadata!!).addOnSuccessListener{ taskSnapshot ->
+                        val download = taskSnapshot.downloadUrl
+                        audio = download!!.toString()
+                        Toast.makeText(this,"Audio upload Succesfully",Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
-
     }
 
     fun uploadBird(view: View){
